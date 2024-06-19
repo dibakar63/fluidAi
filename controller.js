@@ -60,7 +60,7 @@ router.post('/task', async (req, res) => {
 });
 
 // GET /tasks route to retrieve all tasks (authentication required)
-router.get('/tasks', authenticateToken, async (req, res) => {
+router.get('/tasks',  async (req, res) => {
   try {
     const tasks = await Task.find(); // Fetch all tasks from the database
     res.status(200).json(tasks);
@@ -90,7 +90,7 @@ router.get('/tasks/:id',  async (req, res) => {
   });
 
   // PUT /tasks/:id route to update a task by ID (authentication required)
-router.put('/tasks/:id', authenticateToken, async (req, res) => {
+router.put('/tasks/:id',  async (req, res) => {
     try {
       const { id } = req.params;
       const { name, description, author } = req.body;
@@ -121,7 +121,7 @@ router.put('/tasks/:id', authenticateToken, async (req, res) => {
   });
   
   // DELETE /tasks/:id route to delete a task by ID (authentication required)
-  router.delete('/tasks/:id', authenticateToken, async (req, res) => {
+  router.delete('/tasks/:id',  async (req, res) => {
     try {
       const { id } = req.params;
       const deletedTask = await Task.findByIdAndDelete(id);
